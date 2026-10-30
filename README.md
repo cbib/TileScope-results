@@ -17,9 +17,9 @@ Figure 2C comparator values are in Supplementary Data 1 at
 `comparator_methods/comparator_values.csv`; the accompanying
 `comparator_methods_schema.csv` defines the statistics and directions.
 
-## Data download — Zenodo deposit pending
+## Data download
 
-**Zenodo record / DOI: [TO BE ADDED AFTER DEPOSIT].**
+**Zenodo: [10.5281/zenodo.23535235](https://doi.org/10.5281/zenodo.23535235)**
 
 Data are not included in this Git repository. Five separate archives are
 prepared for the deposit:
