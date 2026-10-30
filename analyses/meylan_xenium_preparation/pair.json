@@ -1,0 +1,11 @@
+{
+  "pair": "Stemlike_Interferon",
+  "feature_a": "Stemlike",
+  "feature_b": "Interferon",
+  "genes_a": ["IL7R", "SELL", "TCF7", "CCR7", "FCMR", "CD27"],
+  "genes_b": ["IFIT3", "ISG15", "MX1", "CXCL10", "CXCL11", "IFITM3", "STAT2"],
+  "calculation": "Arithmetic mean of deposited log1p(100 * transcript count / cell total) values for the listed genes, including zeros",
+  "origin": "Marker lists in Meylan et al. Figure 4 notebook; these descriptive means are calculated here, not deposited author signature scores",
+  "paper": "https://doi.org/10.1016/j.cell.2025.12.055",
+  "scope": "Complete deposited Meylan samples with reconstructed publication-matched neighbourhood labels; no coordinate or expression filtering"
+}

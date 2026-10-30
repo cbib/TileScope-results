@@ -1,0 +1,360 @@
+status: proposed_not_frozen
+selection_authority: predeclared focus ROIs plus source-expression and score-level
+  audits; no TileScope pair outcome selected genes
+scoring_contract:
+  multi_gene:
+    method: Seurat::AddModuleScore
+    assay: Spatial
+    layer: data
+    nbin: 24
+    ctrl: 50
+    seed: 1234
+    pool: full Spatial assay feature set
+    invocation: each panel scored separately
+  single_gene: LogNormalized Spatial/data expression; never called a programme
+  raw_panel_control: unweighted mean of LogNormalized member-gene expression
+  comparison_scope: within sample and focus ROI only; no absolute cross-sample score
+    comparisons
+scope_rule:
+  definition_focus:
+    MCT1_CTL:
+    - 2
+    - 5
+    MCT1_KO:
+    - 4
+    - 9
+    V4_WT:
+    - 10
+    - 2
+    - 1
+  portability: CTL and KO always use identical genes per topic; V4 uses the same panel
+    where constructable, plus one explicitly V4-specific reactive-interface program.
+programs:
+- program: cell_cycle_proliferation
+  candidate: proliferation_current
+  use_scope: MCT1_CTL, MCT1_KO and V4_WT
+  kind: biological_program
+  decision: Keep the established five-gene panel; it is more leave-one-out robust
+    than the compact panel and exactly preserves the previous IFN-proliferation analysis.
+  topic: Cell-cycle and proliferation
+  genes:
+  - Cdk1
+  - Birc5
+  - Top2a
+  - Mki67
+  - Mcm5
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.946794484401908
+    minimum_loo_spearman: 0.874611335530885
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.245901639344262
+    mean_pairwise_codetection: 0.6301153482038859
+    minimum_component_coverage: 0.5
+- program: interferon_related
+  candidate: interferon_current
+  use_scope: MCT1_CTL, MCT1_KO and V4_WT
+  kind: biological_program
+  decision: Keep the established five-gene panel; the Zbp1 extension is coherent but
+    adds no necessary spatial field, and the compact panel is less contrast-stable.
+  topic: Interferon-related gene program
+  genes:
+  - Gbp2
+  - Ifi47
+  - Ifit3
+  - Isg15
+  - Irf7
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.892380765919741
+    minimum_loo_spearman: 0.890115854294959
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.681728880157171
+    mean_pairwise_codetection: 0.8395235310176375
+    minimum_component_coverage: 0.75
+- program: inflammation
+  candidate: inflammation_current
+  use_scope: MCT1_CTL, MCT1_KO and V4_WT
+  kind: biological_program
+  decision: Keep the four-gene panel; it retains complement plus chemokine biology
+    and is more leave-one-out robust than the compact panel.
+  topic: Inflammation
+  genes:
+  - C3
+  - Ccl5
+  - Cxcl10
+  - Ccl2
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.969704591811713
+    minimum_loo_spearman: 0.819267299864315
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.163064833005894
+    mean_pairwise_codetection: 0.5631429550123771
+    minimum_component_coverage: 0.333333333333333
+- program: myeloid_phagocytic
+  candidate: myeloid_current
+  use_scope: MCT1_CTL, MCT1_KO and V4_WT
+  kind: biological_program
+  decision: Use one common general-myeloid panel. In V4, within-ROI association is
+    interpretable, but cross-ROI AddModuleScore enrichment must be checked against
+    the raw member-gene mean.
+  topic: Myeloid / phagocytic
+  genes:
+  - Fcer1g
+  - Fcgr2b
+  - Lyz2
+  - Tyrobp
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.95098632710573
+    minimum_loo_spearman: 0.861642834777163
+    score_raw_contrast_sign_agreement: 0.7142857142857143
+    minimum_gene_detection: 0.50098231827112
+    mean_pairwise_codetection: 0.7790477818154642
+    minimum_component_coverage: 0.708333333333333
+- program: cytotoxic_t_nk
+  candidate: cytotoxic_current
+  use_scope: same genes in all samples; biologically supported in the MCT sections
+    and evaluation-only in V4_WT
+  kind: biological_program
+  decision: Use the constructable common panel. It preserves the CTL APC-cytotoxic
+    source association; V4 carries little cytotoxic signal and is not used to define
+    the program.
+  topic: Cytotoxic T/NK-cell
+  genes:
+  - Nkg7
+  - Gzmb
+  - Cd3g
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.57617288537425
+    minimum_loo_spearman: 0.623723930606877
+    score_raw_contrast_sign_agreement: 0.7142857142857143
+    minimum_gene_detection: 0.0333988212180747
+    mean_pairwise_codetection: 0.1372375667180255
+    minimum_component_coverage: 0.166666666666667
+- program: ecm_remodelling
+  candidate: ecm_col11a1_extension
+  use_scope: MCT1_CTL, MCT1_KO and V4_WT
+  kind: biological_program
+  decision: 'Add Col11a1: it improves leave-one-out robustness and provides a GBM-relevant
+    tumour-associated collagen while preserving the reference contrast signs.'
+  topic: ECM remodelling and signalling
+  genes:
+  - Tgfbi
+  - Col18a1
+  - Mmp2
+  - Pcolce
+  - Col11a1
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.928069434003924
+    minimum_loo_spearman: 0.782224524054709
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.283372365339578
+    mean_pairwise_codetection: 0.5594580111404545
+    minimum_component_coverage: 0.416666666666667
+- program: mesenchymal_reactive_stromal
+  candidate: mesenchymal_current
+  use_scope: MCT1_CTL, MCT1_KO and V4_WT
+  kind: biological_program
+  decision: Keep the three-gene panel; the two-gene alternative changes one focus
+    contrast and cannot be leave-one-gene-out tested as a program.
+  topic: Mesenchymal / reactive stromal
+  genes:
+  - Fn1
+  - S100a4
+  - Vim
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.939641975111083
+    minimum_loo_spearman: 0.700949796472185
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.318271119842829
+    mean_pairwise_codetection: 0.729456009054602
+    minimum_component_coverage: 0.333333333333333
+- program: innate_immune
+  candidate: innate_current
+  use_scope: identical in MCT1_CTL and MCT1_KO; unavailable in V4_WT because the required
+    genes are absent
+  kind: biological_program
+  decision: Keep focal Il1b with Casp4 and Ripk2; the compact pair is cleaner but
+    narrows the intended innate-inflammatory biology.
+  topic: Innate immune
+  genes:
+  - Casp4
+  - Il1b
+  - Ripk2
+  definition_scope: mct1_shared
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 4
+    minimum_score_raw_spearman: 0.896146104977707
+    minimum_loo_spearman: 0.704132061683549
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.129807692307692
+    mean_pairwise_codetection: 0.3028789413078278
+    minimum_component_coverage: 0.25
+- program: hypoxia_integrated_stress
+  candidate: hypoxia_current
+  use_scope: identical in MCT1_CTL and MCT1_KO; unavailable as a multi-gene program
+    in V4_WT
+  kind: biological_program
+  decision: Keep the four-gene MCT panel; it is more robust than the compact panel.
+    Trib3 remains a V4-compatible single-gene stress marker, not a substitute program.
+  topic: Hypoxia / stress
+  genes:
+  - Ddit4
+  - Ddit3
+  - Trib3
+  - Atf4
+  definition_scope: mct1_shared
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 4
+    minimum_score_raw_spearman: 0.954229725673841
+    minimum_loo_spearman: 0.812142281821916
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.201923076923077
+    mean_pairwise_codetection: 0.7203216215831157
+    minimum_component_coverage: 0.666666666666667
+- program: endothelial_vascular
+  candidate: vascular_compact
+  use_scope: MCT1_CTL, MCT1_KO and V4_WT
+  kind: biological_program
+  decision: 'Use Cldn5 and Vwf as a portable endothelial/vascular panel. Do not call
+    it angiogenesis: adding Angpt2 is MCT-only and less score/raw stable.'
+  topic: Vascular / angiogenic
+  genes:
+  - Cldn5
+  - Vwf
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.820371552636665
+    minimum_loo_spearman: null
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.100196463654224
+    mean_pairwise_codetection: 0.169745094469618
+    minimum_component_coverage: 0.333333333333333
+- program: oligodendroglial_neural_like
+  candidate: neural_olig_portable
+  use_scope: MCT1_CTL, MCT1_KO and V4_WT
+  kind: biological_program
+  decision: Use the portable Olig1/Olig2 lineage pair. The MCT-only Sox2 panel is
+    less portable and mixes lineage with stem-like biology.
+  topic: Neural-like / differentiation
+  genes:
+  - Olig1
+  - Olig2
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.88886337543054
+    minimum_loo_spearman: null
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.611001964636542
+    mean_pairwise_codetection: 0.8202757380859238
+    minimum_component_coverage: 0.833333333333333
+- program: antigen_presenting_myeloid
+  candidate: apc_myeloid_current
+  use_scope: MCT-defined and evaluated unchanged in MCT1_CTL, MCT1_KO and V4_WT
+  kind: biological_program
+  decision: Use the coherent four-gene MHC-II panel; it separates antigen presentation
+    from the general-myeloid panel and preserves the CTL source finding.
+  topic: Antigen-presenting myeloid state
+  genes:
+  - Cd74
+  - H2-Aa
+  - H2-Ab1
+  - H2-Eb1
+  definition_scope: all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.913204585457297
+    minimum_loo_spearman: 0.864086462207364
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.807465618860511
+    mean_pairwise_codetection: 0.9572740198711454
+    minimum_component_coverage: 0.75
+- program: v4_reactive_interface
+  candidate: v4_reactive_current
+  use_scope: V4_WT only
+  kind: experiment_specific_program
+  decision: Keep the V4-specific Pdpn/A2m/Serping1 panel. It preserves the prior V4
+    reactive-myeloid source association without duplicating S100a4 from the common
+    mesenchymal panel.
+  topic: Reactive tumour-brain interface
+  genes:
+  - Pdpn
+  - A2m
+  - Serping1
+  definition_scope: v4_specific
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 3
+    minimum_score_raw_spearman: 0.873934606256349
+    minimum_loo_spearman: 0.761842207605442
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.174852652259332
+    mean_pairwise_codetection: 0.2174228524352524
+    minimum_component_coverage: 0.571428571428571
+- program: gbm_tumour_compartment_locator
+  candidate: tumour_anchor_gbm_supported
+  use_scope: technical reference in MCT1_CTL, MCT1_KO and V4_WT
+  kind: technical_locator_not_biological_program
+  decision: Replace the legacy locator with a better-supported GBM-associated panel.
+    It locates the experimental tumour compartment; it is not a universal malignant-cell
+    signature.
+  topic: GBM-associated tumour-compartment anchor
+  genes:
+  - Hmga2
+  - Cd109
+  - Cd44
+  - Emp3
+  definition_scope: technical_all_samples
+  score_method: Seurat::AddModuleScore after panel freeze
+  audit:
+    n_focus_contexts: 7
+    minimum_score_raw_spearman: 0.947574037720911
+    minimum_loo_spearman: 0.79413422398497
+    score_raw_contrast_sign_agreement: 1.0
+    minimum_gene_detection: 0.208430913348946
+    mean_pairwise_codetection: 0.5965783905106852
+    minimum_component_coverage: 0.333333333333333
+single_gene_controls:
+  rule: direct LogNormalized expression; marker/control only, never named a program
+  genes:
+  - Mki67
+  - Isg15
+  - Cxcl10
+  - Tyrobp
+  - Nkg7
+  - Mmp2
+  - Fn1
+  - Casp4
+  - Ddit4
+  - Trib3
+  - Cldn5
+  - Olig2
+  - Cd74
+  - Pdpn
+  - Hmga2

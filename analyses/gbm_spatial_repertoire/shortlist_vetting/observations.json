@@ -1,0 +1,74 @@
+{
+  "reviewer": "assistant exploratory visual review; author confirmation required before manuscript",
+  "scope": "13 sample-pair views; source and consensus page 1 inspected for each; selected localities only",
+  "observations": [
+    {
+      "sample": "GBM_ZH916T1", "roi": "5",
+      "pairs": ["AC__Reactive-Ast", "Mac__Reactive-Ast", "MES-Hyp__Reactive-Ast"],
+      "status": "opposed_fields_with_depletion_caveat",
+      "origin": "new_selected_local_review",
+      "observation": "The northeastern/diagonal ROI-5 territory has high MES-Hyp and lower Reactive-Ast expression than adjacent broad Reactive-Ast-rich tissue. The source fields and consensus fields show this opposed pattern. AC/Reactive-Ast and Mac/Reactive-Ast have aligned variation on the same ROI while MES-Hyp/Reactive-Ast is opposed; the numerical signs persist at all four supports and agree with the displayed neighbour association. This is spatially interpretable variation, not an empty or unavailable region.",
+      "caution": "Reactive-Ast high-expression support is only 2/216 spots and Mac 1/216; both are strongly depleted relative to context. Their positive correlation must not be described as a macrophage/reactive-astrocyte-rich niche. Retain this strongest-coefficient selection as a diagnostic example, not the leading program-rich illustration. The partly narrow/fragmented support does not establish a single smooth gradient or causality."
+    },
+    {
+      "sample": "GBM_ZH881T1", "roi": "2",
+      "pairs": ["AC__Reactive-Ast", "Mac__Reactive-Ast", "MES-Hyp__Reactive-Ast"],
+      "status": "partner_dependent_fields_supported",
+      "origin": "new_selected_local_review",
+      "observation": "The large central/northeastern ROI contains spatially variable Mac and hypoxic fields; Reactive-Ast is lower than in the strongly reactive eastern ROI 4. Within ROI 2, AC and Mac variation is positively associated with Reactive-Ast, whereas hypoxic variation is opposed. Source/consensus maps are compatible with these spatially patterned fields, and both large components retain the expected short-distance signs for most of the readouts. This provides an actual same-ROI witness for the three partner relationships.",
+      "caution": "AC and Reactive-Ast are not marginally enriched in ROI 2. The parent has multiple components: the two large components and two small ones have different curves; the parent coefficient cannot be attributed to each component. Opposed patches/sectors are supported, but a single gradient axis is not established. ROI 2 and ROI 4 must not be assumed to form a measured direct interface: the exported contact list does not contain 2-to-4."
+    },
+    {
+      "sample": "GBM_ZH881T1", "roi": "4",
+      "pairs": ["AC__Reactive-Ast", "Mac__Reactive-Ast", "MES-Hyp__Reactive-Ast"],
+      "status": "contrary_local_sign_with_territorial_caveat",
+      "origin": "new_selected_counterexample",
+      "observation": "The eastern territory is conspicuously rich in AC and Reactive-Ast in both source and consensus maps. Mac and MES-Hyp are much lower there than in their preferred territories. All three pair correlations are positive within ROI 4, including MES-Hyp/Reactive-Ast, unlike ROI 2 in the same sample. Thus the partner pattern is not a universal label attached to every ROI; the maps and marginals make the change of regional context explicit.",
+      "caution": "Only 4/192 spots are MES-Hyp-high and 8/192 Mac-high under the stored source high-expression definition. Positive hypoxic covariance in this region is not a hypoxia-rich overlapping niche. Distance association falls near zero in the outermost shell; it should not be called persistent at all distances."
+    },
+    {
+      "sample": "259_T", "roi": "2",
+      "pairs": ["AC__Reactive-Ast", "Mac__Reactive-Ast", "MES-Hyp__Reactive-Ast"],
+      "status": "broad_program_rich_territory_supported",
+      "origin": "post_inspection_program_rich_control",
+      "observation": "AC, Reactive-Ast and Mac occupy broad shared territory around the central/left hypoxic region, visible at source and consensus support. ROI 2 is enriched for all three, whereas MES-Hyp is depleted there. Internal source correlations are modest but positive for AC/Reactive-Ast and Mac/Reactive-Ast, and negative for MES-Hyp/Reactive-Ast; tessellation/direct/ensemble readouts preserve these directions. This is a clearer program-rich tissue example than the strongest-coefficient depleted region.",
+      "caution": "The same-sign pattern does not pass the r=0.2 native conjunction; that is a display threshold, not a definition of absent biology. Component curves decay toward zero at longer distance. The central hypoxic territory includes other ROI labels; there is no exported direct 3-to-2 contact, so no boundary effect at that invented interface is claimed. Broad territory is supported; an enclosed-domain/nested-foci scenario is not certified here."
+    },
+    {
+      "sample": "248_T", "roi": "5", "pairs": ["AC__OPC"],
+      "status": "broad_enriched_overlap_rechecked", "origin": "inherited_interpretation_rechecked",
+      "observation": "The lower-right ROI contains broad shared AC/OPC elevation at source and consensus support, with both marginal enrichments above one and positive internal association. This remains a useful positive-territory anchor for the selected cohort profile.",
+      "caution": "This reconfirms an earlier example and is not a new independent recurrence. The source coefficient near 0.20 should not be treated as a sharp biological decision boundary; spatial overlap and internal covariance are separate properties."
+    },
+    {
+      "sample": "248_T", "roi": "2", "pairs": ["AC__OPC"],
+      "status": "aligned_variation_without_shared_enrichment_rechecked", "origin": "inherited_interpretation_rechecked",
+      "observation": "The upper broad ROI has stronger positive internal association than ROI 5, but AC is depleted relative to its context. Source and consensus maps show matching local high/low variation within an OPC-richer territory. This remains a useful control against equating a large correlation with shared marginal enrichment.",
+      "caution": "The map does not uniquely distinguish local foci, a broad transition or nesting. Those scenario labels remain candidates, not additional observations established by the coefficient."
+    },
+    {
+      "sample": "262_T", "roi": "5", "pairs": ["NPC__Neuron"],
+      "status": "broad_shared_territory_weak_internal_association_rechecked", "origin": "inherited_interpretation_rechecked",
+      "observation": "Both fields occupy the broad central/left ROI at source and consensus support. Marginal and joint enrichment are strong, while source/ensemble Pearson remain around 0.05. This is a direct tissue example of shared regional abundance with little correlated internal variation, and is not a no-signal result.",
+      "caution": "PDF A is Neuron and B is NPC, whereas the numerical pair key is canonical NPC__Neuron. Program scores on mixed-cell Visium spots do not prove same-cell expression. This is a reconfirmation, not a new recurrence."
+    },
+    {
+      "sample": "262_T", "roi": "4", "pairs": ["NPC__Neuron"],
+      "status": "positive_spatial_variation_rechecked", "origin": "inherited_interpretation_rechecked",
+      "observation": "The lateral ROI provides the contrasting context: positive association at source and consensus, with positive component-native distance evidence in the two large components. The source and consensus maps show corresponding higher/lower sectors rather than the near-uniform shared elevation of ROI 5.",
+      "caution": "A single smooth gradient is still not established across the disconnected components. Retain their separate IDs and curves; do not average them into one geometrical object."
+    },
+    {
+      "sample": "GBM_ZH916bulk", "roi": "1", "pairs": ["AC__MES-Hyp"],
+      "status": "internal_spatial_opposition_rechecked", "origin": "inherited_interpretation_rechecked",
+      "observation": "The source and consensus maps show AC and hypoxic high-expression zones at different positions within the same broad ROI. Both marginal enrichments exceed one, joint-high enrichment is below one, and internal negative association is retained across supports and the four exported component-distance shells. This remains a particularly clear opposed-field example.",
+      "caution": "This is one selected locality, not evidence that the entire seven-pair cohort has long-distance persistence. ZH916 bulk and T1 must not be treated as independent-patient replication."
+    },
+    {
+      "sample": "260_T", "roi": "2", "anchor_roi": "4", "pairs": ["MES-Ast__MES-Hyp"],
+      "status": "hypoxic_boundary_field_rechecked", "origin": "inherited_interpretation_rechecked",
+      "observation": "The standard source and consensus views retain the hypoxic annular/boundary-associated field around the responder ROI. At the actual 4-to-2 contact, the stored Hyp near-minus-far response is positive on S/T/CD/CE, while Ast is close to zero and responder pair correlation/Moran are near zero. This remains the distinct boundary-information anchor for the story.",
+      "caution": "PDF A is MES-Hyp and B MES-Ast; numerical A/B follow canonical program names. Exact hop-band localization was established in the inherited review, not newly reconstructed here. The reverse 2-to-4 response is different, not another independent confirmation. A broader annular gradient remains a competing explanation; no induction or causal transport is inferred."
+    }
+  ]
+}

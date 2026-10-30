@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scenario-benchmark"
+version = "2.0.0"
+description = "Scenario generation and analysis tools for evaluating spatial-transcriptomics methods on observed tissue geometries."
+requires-python = ">=3.11"
+dependencies = ["numpy", "pandas", "scipy", "PyYAML"]
+
+[project.optional-dependencies]
+analysis = ["matplotlib", "scikit-learn", "Pillow"]
+figures = ["matplotlib", "Pillow", "XlsxWriter>=3.2", "openpyxl>=3.1"]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scenario_benchmark*", "tilescope_results*"]
+
+[tool.pytest.ini_options]
+# Default: tests that do not require TileScope. Conformance
+# tests live under tests/tilescope_conformance/ and require an explicit
+# opt-in invocation: `pytest tests/tilescope_conformance`.
+testpaths = ["tests/scenario_benchmark"]
+pythonpath = ["."]

@@ -1,0 +1,673 @@
+status: score_level_comparison_not_frozen
+source_catalogue: inputs/signature_panel_candidates.yaml
+scoring_contract:
+  multi_gene:
+    method: Seurat::AddModuleScore
+    assay: Spatial
+    layer: data
+    nbin: 24
+    ctrl: 50
+    seed: 1234
+    pool: full Spatial assay feature set
+    invocation: each panel scored separately
+  single_gene: LogNormalized Spatial/data expression; never called a programme
+  raw_panel_control: unweighted mean of LogNormalized member-gene expression
+  comparison_scope: within sample and focus ROI only; no absolute cross-sample score
+    comparisons
+reference_by_topic:
+  Cell-cycle and proliferation: proliferation_current
+  Interferon-related gene program: interferon_current
+  Inflammation: inflammation_current
+  Myeloid / phagocytic: myeloid_current
+  Cytotoxic T/NK-cell: cytotoxic_current
+  ECM remodelling and signalling: ecm_current
+  Mesenchymal / reactive stromal: mesenchymal_current
+  Innate immune: innate_current
+  Hypoxia / stress: hypoxia_current
+  Vascular / angiogenic: vascular_current
+  Neural-like / differentiation: neural_current
+  Antigen-presenting myeloid state: apc_myeloid_current
+  Reactive tumour-brain interface: v4_reactive_current
+  GBM-associated tumour-compartment anchor: tumour_anchor_legacy
+candidates:
+- candidate: proliferation_current
+  topic: Cell-cycle and proliferation
+  architecture: current
+  scope: all_samples
+  intended_samples: &id001
+  - MCT1_CTL
+  - MCT1_KO
+  - V4_WT
+  genes:
+  - Cdk1
+  - Birc5
+  - Top2a
+  - Mki67
+  - Mcm5
+  rationale: Existing harmonized candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: proliferation_compact
+  topic: Cell-cycle and proliferation
+  architecture: compact
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Cdk1
+  - Birc5
+  - Top2a
+  rationale: Three canonical cycling genes with strong focus-ROI support.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: proliferation_single_mki67
+  topic: Cell-cycle and proliferation
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Mki67
+  rationale: Canonical single-gene proliferation comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: interferon_current
+  topic: Interferon-related gene program
+  architecture: current
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Gbp2
+  - Ifi47
+  - Ifit3
+  - Isg15
+  - Irf7
+  rationale: Existing harmonized candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: interferon_compact
+  topic: Interferon-related gene program
+  architecture: compact
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Gbp2
+  - Ifit3
+  - Isg15
+  rationale: Compact interferon-induced panel.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: interferon_zbp1_extension
+  topic: Interferon-related gene program
+  architecture: experimental_extension
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Gbp2
+  - Ifi47
+  - Ifit3
+  - Isg15
+  - Irf7
+  - Zbp1
+  rationale: Tests whether an interferon-linked nucleic-acid sensing gene adds spatial
+    information.
+  biological_relevance: high
+  novelty: exploratory_refinement
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: interferon_single_isg15
+  topic: Interferon-related gene program
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Isg15
+  rationale: Canonical interferon-induced single-gene comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: inflammation_current
+  topic: Inflammation
+  architecture: current
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - C3
+  - Ccl5
+  - Cxcl10
+  - Ccl2
+  rationale: Existing harmonized candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: inflammation_compact
+  topic: Inflammation
+  architecture: compact
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Ccl5
+  - Cxcl10
+  - Ccl2
+  rationale: Chemokine-centred compact panel.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: inflammation_single_cxcl10
+  topic: Inflammation
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Cxcl10
+  rationale: Strongly detected inflammatory chemokine comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: myeloid_current
+  topic: Myeloid / phagocytic
+  architecture: current
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Fcer1g
+  - Fcgr2b
+  - Lyz2
+  - Tyrobp
+  rationale: Existing harmonized candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: myeloid_compact
+  topic: Myeloid / phagocytic
+  architecture: compact
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Fcer1g
+  - Lyz2
+  - Tyrobp
+  rationale: Compact general-myeloid panel, separate from MHC-II state.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: myeloid_single_tyrobp
+  topic: Myeloid / phagocytic
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Tyrobp
+  rationale: Broad myeloid single-gene comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: v4_myeloid_legacy
+  topic: Myeloid / phagocytic
+  architecture: legacy_comparison
+  scope: legacy_v4_comparison
+  intended_samples:
+  - V4_WT
+  genes:
+  - Ly86
+  - Fcgr3
+  - Fcer1g
+  - Fcgr2b
+  rationale: Exact legacy V4 myeloid panel retained only to audit the previously reported
+    V4 finding.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: cytotoxic_current
+  topic: Cytotoxic T/NK-cell
+  architecture: current
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Nkg7
+  - Gzmb
+  - Cd3g
+  rationale: Existing harmonized candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: cytotoxic_mct1_legacy
+  topic: Cytotoxic T/NK-cell
+  architecture: legacy_comparison
+  scope: legacy_mct1_comparison
+  intended_samples: &id002
+  - MCT1_CTL
+  - MCT1_KO
+  genes:
+  - Nkg7
+  - Gzmb
+  - Cd3d
+  rationale: Exact legacy cytotoxic panel, evaluated unchanged in CTL and KO for finding
+    traceability.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: cytotoxic_single_nkg7
+  topic: Cytotoxic T/NK-cell
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Nkg7
+  rationale: Sensitive cytotoxic-lymphocyte comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: cytotoxic_mct1_tcell_extension
+  topic: Cytotoxic T/NK-cell
+  architecture: experimental_extension
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Nkg7
+  - Gzmb
+  - Cd3g
+  - Cd3d
+  rationale: MCT1-specific review candidate adding a second T-cell receptor component.
+  biological_relevance: high
+  novelty: model_relevant_refinement
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: ecm_current
+  topic: ECM remodelling and signalling
+  architecture: current
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Tgfbi
+  - Col18a1
+  - Mmp2
+  - Pcolce
+  rationale: Existing harmonized candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: ecm_col11a1_extension
+  topic: ECM remodelling and signalling
+  architecture: experimental_extension
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Tgfbi
+  - Col18a1
+  - Mmp2
+  - Pcolce
+  - Col11a1
+  rationale: Adds a tumour-associated collagen with strong focus-ROI support.
+  biological_relevance: high
+  novelty: gbm_context_refinement
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: ecm_single_mmp2
+  topic: ECM remodelling and signalling
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Mmp2
+  rationale: Matrix-remodelling single-gene comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: mesenchymal_current
+  topic: Mesenchymal / reactive stromal
+  architecture: current
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Fn1
+  - S100a4
+  - Vim
+  rationale: Existing harmonized candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: mesenchymal_compact
+  topic: Mesenchymal / reactive stromal
+  architecture: compact
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Fn1
+  - S100a4
+  rationale: Compact stromal/mesenchymal pair.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: mesenchymal_single_fn1
+  topic: Mesenchymal / reactive stromal
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Fn1
+  rationale: ECM-associated mesenchymal single-gene comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: innate_current
+  topic: Innate immune
+  architecture: current
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Casp4
+  - Il1b
+  - Ripk2
+  rationale: Existing shared MCT1 candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: innate_compact
+  topic: Innate immune
+  architecture: compact
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Casp4
+  - Ripk2
+  rationale: Compact innate-sensing pair.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: innate_single_casp4
+  topic: Innate immune
+  architecture: single_gene
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Casp4
+  rationale: Inflammatory-caspase single-gene comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: hypoxia_current
+  topic: Hypoxia / stress
+  architecture: current
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Ddit4
+  - Ddit3
+  - Trib3
+  - Atf4
+  rationale: Existing shared MCT1 candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: hypoxia_compact
+  topic: Hypoxia / stress
+  architecture: compact
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Ddit4
+  - Ddit3
+  - Trib3
+  rationale: Compact hypoxia/integrated-stress panel.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: hypoxia_single_ddit4
+  topic: Hypoxia / stress
+  architecture: single_gene
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Ddit4
+  rationale: Hypoxia/stress single-gene comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: hypoxia_single_trib3
+  topic: Hypoxia / stress
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Trib3
+  rationale: Portable integrated-stress marker; retained as a single-gene comparator,
+    not a cross-sample hypoxia programme.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: vascular_current
+  topic: Vascular / angiogenic
+  architecture: current
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Cldn5
+  - Vwf
+  - Angpt2
+  rationale: Existing shared MCT1 candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: vascular_compact
+  topic: Vascular / angiogenic
+  architecture: compact
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Cldn5
+  - Vwf
+  rationale: Portable endothelial-identity pair, defined from the MCT focus and evaluated
+    unchanged in V4.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: vascular_single_cldn5
+  topic: Vascular / angiogenic
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Cldn5
+  rationale: Portable endothelial single-gene comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: neural_current
+  topic: Neural-like / differentiation
+  architecture: current
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Olig1
+  - Olig2
+  - Sox2
+  rationale: Existing shared MCT1 candidate.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: neural_compact
+  topic: Neural-like / differentiation
+  architecture: compact
+  scope: mct1_shared
+  intended_samples: *id002
+  genes:
+  - Olig2
+  - Sox2
+  rationale: Compact oligodendroglial/stem-like pair.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: neural_olig_portable
+  topic: Neural-like / differentiation
+  architecture: portable
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Olig1
+  - Olig2
+  rationale: Portable oligodendroglial-lineage pair; avoids Sox2, which is absent
+    from the V4 feature set.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: neural_single_olig2
+  topic: Neural-like / differentiation
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Olig2
+  rationale: Portable canonical GBM lineage-state comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: apc_myeloid_current
+  topic: Antigen-presenting myeloid state
+  architecture: current
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Cd74
+  - H2-Aa
+  - H2-Ab1
+  - H2-Eb1
+  rationale: MCT-defined MHC-II state panel, evaluated unchanged in V4.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: apc_myeloid_ctl_legacy
+  topic: Antigen-presenting myeloid state
+  architecture: legacy_comparison
+  scope: legacy_ctl_comparison
+  intended_samples:
+  - MCT1_CTL
+  genes:
+  - Ly86
+  - H2-Eb1
+  - Lyz2
+  - H2-Aa
+  rationale: Exact legacy CTL APC panel retained only to audit the result already
+    shared with biologists.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: apc_myeloid_compact
+  topic: Antigen-presenting myeloid state
+  architecture: compact
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Cd74
+  - H2-Aa
+  - H2-Eb1
+  rationale: Portable compact MHC-II antigen-presentation panel.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: apc_myeloid_single_cd74
+  topic: Antigen-presenting myeloid state
+  architecture: single_gene
+  scope: all_samples
+  intended_samples: *id001
+  genes:
+  - Cd74
+  rationale: Portable antigen-presentation single-gene comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: v4_reactive_current
+  topic: Reactive tumour-brain interface
+  architecture: current
+  scope: v4_specific
+  intended_samples:
+  - V4_WT
+  genes:
+  - Pdpn
+  - A2m
+  - Serping1
+  rationale: Existing V4-specific extension.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: v4_reactive_legacy
+  topic: Reactive tumour-brain interface
+  architecture: legacy_comparison
+  scope: legacy_v4_comparison
+  intended_samples:
+  - V4_WT
+  genes:
+  - S100a4
+  - Pdpn
+  - A2m
+  rationale: Exact legacy V4 reactive panel retained only to audit the result already
+    shared with biologists.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: v4_reactive_s100a4_extension
+  topic: Reactive tumour-brain interface
+  architecture: experimental_extension
+  scope: v4_specific
+  intended_samples:
+  - V4_WT
+  genes:
+  - Pdpn
+  - A2m
+  - Serping1
+  - S100a4
+  rationale: Tests whether the common stromal marker sharpens the V4 interface.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: v4_reactive_single_pdpn
+  topic: Reactive tumour-brain interface
+  architecture: single_gene
+  scope: v4_specific
+  intended_samples:
+  - V4_WT
+  genes:
+  - Pdpn
+  rationale: Interface-associated single-gene comparator.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression
+- candidate: tumour_anchor_legacy
+  topic: GBM-associated tumour-compartment anchor
+  architecture: legacy
+  scope: technical_all_samples
+  intended_samples: *id001
+  genes:
+  - Cdkn2a
+  - Tcim
+  - Il11
+  - Emp3
+  rationale: Old dataset-derived locator retained for comparison.
+  biological_relevance: medium
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: tumour_anchor_gbm_supported
+  topic: GBM-associated tumour-compartment anchor
+  architecture: gbm_supported
+  scope: technical_all_samples
+  intended_samples: *id001
+  genes:
+  - Hmga2
+  - Cd109
+  - Cd44
+  - Emp3
+  rationale: More conventional GBM-associated locator supported in all three sections.
+  biological_relevance: high
+  novelty: established
+  score_method: Seurat::AddModuleScore after panel freeze
+- candidate: tumour_anchor_single_hmga2
+  topic: GBM-associated tumour-compartment anchor
+  architecture: single_gene
+  scope: technical_all_samples
+  intended_samples: *id001
+  genes:
+  - Hmga2
+  rationale: Model-line single-gene locator; not a universal malignant-cell marker.
+  biological_relevance: high
+  novelty: established
+  score_method: LogNormalized single-gene expression

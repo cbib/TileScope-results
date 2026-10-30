@@ -1,0 +1,91 @@
+phase: 6_harmonized
+status: frozen_for_tilescope
+decision_date: 2026-09-19
+decision_source:
+  workbook: mouse_gbm_signatures.xlsx
+  workbook_sha256: 4778f8fc1bec14dbca4ed1b5d9e664229d76d1bb71e44407a4f3b169b67fa0c4
+  note: The workbook is a review artefact; this YAML is the durable execution contract.
+scoring_rule:
+  method: Seurat::AddModuleScore
+  assay: Spatial
+  layer: data
+  expression_transform: LogNormalize with scale.factor=10000
+  gene_pool_for_control_bins: full Spatial assay feature set
+  nbin: 24
+  ctrl: 50
+  seed: 1234
+  invocation: score each signature separately, once per sample, then reuse across every pair
+  post_score_transforms: none
+  cross_sample_comparison: do not compare absolute AddModuleScore magnitudes across samples
+  unavailability_rule: fail if any required gene is missing or invariant; never silently shrink a signature
+signatures:
+  cell_cycle_proliferation:
+    topic: Cell-cycle and proliferation
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Cdk1, Birc5, Top2a, Mki67, Mcm5]
+  interferon_related:
+    topic: Interferon-related
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Gbp2, Ifi47, Ifit3, Isg15, Irf7]
+  inflammation:
+    topic: Inflammation
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [C3, Ccl5, Cxcl10, Ccl2]
+  myeloid_phagocytic:
+    topic: Myeloid/phagocytic
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Fcer1g, Fcgr2b, Lyz2, Tyrobp]
+  antigen_presenting_myeloid:
+    topic: Antigen-presenting myeloid state
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Cd74, H2-Aa, H2-Ab1, H2-Eb1]
+  cytotoxic_t_nk:
+    topic: Cytotoxic T/NK-cell
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Nkg7, Gzmb, Cd3g]
+  ecm_remodelling:
+    topic: ECM remodelling
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Tgfbi, Col18a1, Mmp2, Pcolce, Col11a1]
+  mesenchymal_reactive_stromal:
+    topic: Mesenchymal/stromal
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Fn1, S100a4, Vim]
+  innate_immune:
+    topic: Innate immune
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO]
+    genes: [Casp4, Il1b, Ripk2]
+  hypoxia_integrated_stress:
+    topic: Hypoxia/stress
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO]
+    genes: [Ddit4, Ddit3, Trib3, Atf4]
+  endothelial_vascular:
+    topic: Vascular/endothelial
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Cldn5, Vwf]
+  oligodendroglial_neural_like:
+    topic: Neural-like/differentiation
+    kind: biological_program
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Olig1, Olig2]
+  v4_reactive_interface:
+    topic: Reactive tumour-brain interface
+    kind: experiment_specific_program
+    intended_samples: [V4_WT]
+    genes: [Pdpn, A2m, Serping1]
+  gbm_tumour_compartment_locator:
+    topic: GBM-associated tumour-compartment locator
+    kind: technical_locator
+    intended_samples: [MCT1_CTL, MCT1_KO, V4_WT]
+    genes: [Hmga2, Cd109, Cd44, Emp3]

@@ -1,0 +1,28 @@
+{
+  "batch": "gbm_repertoire_01",
+  "scope": "own_full_gbm_investigation",
+  "selection": "Previously fixed interpretation-development pilot, inherited from earlier manuscript work including three reference pairs, plus two additional geometry/shared-field views. Not an unbiased cohort sample or a newly optimized frequency ranking. All original ROIs and actual contacts remain eligible.",
+  "families": ["broad_colocalization", "focal_pattern", "spatial_gradient", "nested_foci", "embedded_domains", "dispersed_infiltration", "contact_interface"],
+  "views": [
+    {"sample":"243_T","pair_id":"AC__OPC"},
+    {"sample":"243_T","pair_id":"MES-Ast__MES-Hyp"},
+    {"sample":"243_T","pair_id":"AC__MES-Hyp"},
+    {"sample":"248_T","pair_id":"AC__OPC"},
+    {"sample":"248_T","pair_id":"MES-Ast__MES-Hyp"},
+    {"sample":"248_T","pair_id":"AC__MES-Hyp"},
+    {"sample":"260_T","pair_id":"AC__OPC"},
+    {"sample":"260_T","pair_id":"MES-Ast__MES-Hyp"},
+    {"sample":"260_T","pair_id":"AC__MES-Hyp"},
+    {"sample":"262_T","pair_id":"AC__OPC"},
+    {"sample":"262_T","pair_id":"MES-Ast__MES-Hyp"},
+    {"sample":"262_T","pair_id":"AC__MES-Hyp"},
+    {"sample":"270_T","pair_id":"AC__OPC"},
+    {"sample":"270_T","pair_id":"MES-Ast__MES-Hyp"},
+    {"sample":"270_T","pair_id":"AC__MES-Hyp"},
+    {"sample":"GBM_ZH916bulk","pair_id":"AC__OPC"},
+    {"sample":"GBM_ZH916bulk","pair_id":"MES-Ast__MES-Hyp"},
+    {"sample":"GBM_ZH916bulk","pair_id":"AC__MES-Hyp"},
+    {"sample":"262_T","pair_id":"NPC__Neuron"},
+    {"sample":"270_T","pair_id":"MES__Oligo"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "technology": "xenium",
+  "tessellation": {
+    "n": 10,
+    "target_observations_per_tile": 15,
+    "min_observations_per_tile": 9,
+    "min_component_observations": 50
+  },
+  "consensus": {
+    "min_spots_per_hex": 12,
+    "min_tess_coverage_fraction": 0.6666666666666666,
+    "bivariate_morans": {"visualize": true}
+  },
+  "roi_filters": {"min_roi_spots": 40, "min_context_spots": 40},
+  "visualization": {"show_stability": true},
+  "permutations": 99,
+  "seed": 42,
+  "output_dir": "tilescope_output",
+  "verbose": false
+}

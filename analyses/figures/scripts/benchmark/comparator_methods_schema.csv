@@ -1,0 +1,10 @@
+method,direction,w_arm,value_scale,sign,notes
+pearson_within_roi,,na,"Pearson r [-1,1]",signed,Non-spatial within-ROI reference; no spatial weight used
+spearman_within_roi,,na,"Spearman rho [-1,1]",signed,Non-spatial within-ROI reference; rank-based
+MERINGUE spatialCrossCor,,shared,"SCC [-1,1]",signed,Spatial cross-correlation on the shared hex W
+Voyager lee,,shared,"Lee's L [-1,1]",signed,Bivariate spatial statistic on the shared hex W
+spatialcorr_derived_rho,,na,"Derived rho [-1,1]",signed,Correlation aggregated from the SpatialCorr fit
+spatialcorr_native,,na,"Likelihood ratio [0,inf)",unsigned,SpatialCorr's native LLR; large = strong effect
+STopover J_comp,,na,"Overlap index [0,1]",unsigned,One-sided; na on anti-phase constructs by design
+SpaceBF Gaussian global.beta,a_on_b,shared_edges,Regression beta,signed,SpaceBF global regression coefficient A on B
+SpaceBF Gaussian global.beta,b_on_a,shared_edges,Regression beta,signed,SpaceBF global regression coefficient B on A

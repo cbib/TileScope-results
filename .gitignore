@@ -1,0 +1,107 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+venv/
+.venv/
+/.cleanup_archives/
+
+# Regenerable publication packages; scripts and authored captions remain tracked.
+/analyses/figures/main/
+/analyses/figures/supplementary/
+/analyses/figures/additional/
+/analyses/figures/supplementary_data/
+/analyses/figures/index.csv
+/analyses/figures/index.html
+
+# Raw upstream data
+/data/
+
+# Regenerable corpora and analysis outputs
+/benchmark/
+/outputs/
+/scenario_benchmark/runs/
+
+# Retired output locations stay ignored to prevent accidental reintroduction.
+/greenwald_restoration/results/parent_pair_categorized.csv
+
+# Former AC–OPC annotation cache.
+/analyses/greenwald_ac_opc/greenwald_organization/results/spot_annotations.csv
+
+# Retired pilot caches.
+/analyses/statistic_rationalization/real_geometry_benchmark/generated/
+/analyses/statistic_rationalization/real_geometry_benchmark/inspection_maps/
+
+# Legacy in-repository locations remain ignored as a safety guard.
+# Current benchmark payloads live under TILESCOPE_DATA_DIR/scenario_benchmark;
+# plans and indexes accompany corpus/; run config accompanies CurrentResults/.
+/corpus/
+/benchmark_manifests/
+
+# Retired calibration fixture.
+/calibration_corpus/
+
+# scenario_discriminability sister-derived per-role outputs:
+# atlas_rows.csv + run_status.json + aggregated atlas.csv +
+# run_accounting.csv + visual_inspection_index.csv. All
+# regenerable via analyses/scenario_discriminability/build_atlas.py
+# against the frozen corpus_index + tilescope_run_config.json. The
+# canonical TileScope run tree per role (including publication PDFs)
+# lives in external scenario_benchmark/CurrentResults/.
+# Numerical reductions now live under the external scenario_discriminability/.
+/analyses/scenario_discriminability/outputs/
+/analyses/scenario_discriminability/outputs_pre_*/
+
+# scenario_feasibility detailed audit CSV — regenerable via
+# `python -m scenario_benchmark.materialize --audit`. Aggregate
+# feasibility_availability.csv lives beside the external corpus plan.
+/analyses/scenario_feasibility/outputs/
+
+# Retired AC–OPC run location.
+/analyses/greenwald_ac_opc/runs/
+
+# Janesick Xenium ACTA2 x FASN feasibility outputs (regenerable via its runner)
+/analyses/janesick_xenium_feasibility/runs/
+
+# Retired AC–OPC sensitivity run location.
+/analyses/greenwald_ac_opc_config_sensitivity/runs/
+
+# Former Greenwald browser/cache locations; no longer current workflows.
+/analyses/greenwald_full_evaluation/manuscript_evidence_profiles/assets/
+/analyses/greenwald_full_evaluation/manuscript_evidence_profiles/downloads/
+/analyses/greenwald_full_evaluation/manuscript_evidence_profiles/pairs/
+/analyses/greenwald_full_evaluation/manuscript_evidence_profiles/programs/
+/analyses/greenwald_full_evaluation/manuscript_evidence_profiles/*.png
+/analyses/greenwald_full_evaluation/scattered_roi_audit/contact_sheets/
+/analyses/greenwald_full_evaluation/scattered_roi_audit/pdf_renders/
+/analyses/greenwald_full_evaluation/scenario_evidence_scan/pdf_previews/
+/analyses/greenwald_full_evaluation/scenario_evidence_scan/review_queues.csv.gz
+/analyses/greenwald_full_evaluation/scenario_configurations/pdf_previews/
+/analyses/greenwald_full_evaluation/context_matching/inputs/
+/analyses/greenwald_full_evaluation/context_matching/program_values/
+/analyses/greenwald_full_evaluation/context_matching/runs/
+/analyses/greenwald_full_evaluation/context_matching/visual_review/
+
+# Former in-repository numerical cache locations.
+/analyses/greenwald_full_evaluation/scenario_cohort/by_sample/
+
+/analyses/greenwald_full_evaluation/two_level_evidence/details/
+
+/analyses/greenwald_full_evaluation/local_frequencies/details/
+
+# GBM repertoire review: standard-PDF rasters and deduplicated numerical carriers
+# are generated; authored observations, coverage and provenance remain tracked.
+/analyses/gbm_spatial_repertoire/details/
+
+# Retired pair-profile cache and retained shortlist preview location.
+/analyses/gbm_spatial_repertoire/pair_profiles/details/
+/analyses/gbm_spatial_repertoire/shortlist_vetting/details/

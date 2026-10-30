@@ -1,0 +1,8 @@
+__pycache__/
+.mplconfig/
+.pytest_cache/
+
+# Generated artwork and supporting analysis live here, but are regenerable.
+/panels/
+/evidence/
+/*provenance.json

@@ -1,0 +1,135 @@
+fixture_id: greenwald_242T_two_pairs
+purpose: |
+  Real-data E2E acceptance fixture for the TileScope canonical ROI-grain
+  exports. Included so the integration tests run
+  without requiring a TileScope-data checkout. This is IMMUTABLE test
+  input; the scientific source authority remains TileScope-data.
+
+source:
+  cohort: Greenwald 2024 — heiland_tyrosh preprocessed cohort
+  sample: 242_T
+  source_root: TileScope-data/heiland_tyrosh
+  provenance_scope: |
+    The CSVs vendored here are byte-identical copies of the
+    heiland_tyrosh preprocessed cohort files (see `source_sha256` per
+    file below). They are NOT necessarily byte-identical to the raw
+    published Greenwald Visium tables — the preprocessing pipeline in
+    heiland_tyrosh produced a `(x, y, gene1, gene2, roi_id)` schema
+    that both TileScope and this analysis repository consume directly.
+  citation: |
+    Greenwald AC et al. (2024) Integrative spatial analysis reveals a
+    multi-layered organization of glioblastoma. Cell 187(10):2485-2501.
+  upstream_accession: |
+    The exact upstream release URL and per-sample accession were not
+    recorded when this fixture was created and have not been resolved
+    in this manifest. The study citation above does not replace them.
+  redistribution: |
+    Redistribution basis for the raw Greenwald 2024 Visium data was
+    not documented in TileScope-data at fixture-creation time and has
+    not been independently verified. The vendored files are used
+    solely as test input in TileScope-results. Their inclusion does not
+    establish permission for redistribution; the applicable license
+    remains unverified.
+
+selection_rationale: |
+  242_T was selected for geometry / identity complexity, not biological
+  interest. Six source ROIs, at least one parent that splits into
+  multiple analysis components under the standard component-domain
+  contract — this exercises sibling-component pooling in every
+  ROI-grain builder (correlation + enrichment + Moran) and genuine
+  other-ROI enrichment context. Two pairs give an A/B check that
+  spot-ledger and component-geometry are stable across gene pairs
+  with identical (x, y, roi_id) support.
+
+files:
+  - name: 242_T_expression_data_AC_Chromatin-Reg.csv
+    role: input_expression_pair_1
+    source_relative: CSVs/242_T_expression_data_AC_Chromatin-Reg.csv
+    source_sha256: 9ca64e2c3ba3b93b4ea0c34385c52a36d252e17e8a77dcfecc8886f2fefb920f
+    fixture_sha256: 9ca64e2c3ba3b93b4ea0c34385c52a36d252e17e8a77dcfecc8886f2fefb920f
+    n_rows: 3871
+    n_rois: 6
+    per_roi_n:
+      1: 93
+      2: 776
+      3: 1410
+      4: 990
+      5: 100
+      6: 502
+    columns: [x, y, gene1, gene2, roi_id]
+    sanitization: none
+
+  - name: 242_T_expression_data_MES_Reactive-Ast.csv
+    role: input_expression_pair_2
+    source_relative: CSVs/242_T_expression_data_MES_Reactive-Ast.csv
+    source_sha256: 9f45d8669d70850ab61f9e869053f28b2974de282a680565377da12c3aff4a39
+    fixture_sha256: 9f45d8669d70850ab61f9e869053f28b2974de282a680565377da12c3aff4a39
+    n_rows: 3871
+    n_rois: 6
+    per_roi_n:
+      1: 93
+      2: 776
+      3: 1410
+      4: 990
+      5: 100
+      6: 502
+    columns: [x, y, gene1, gene2, roi_id]
+    sanitization: none
+
+  - name: run.config.json
+    role: tilescope_run_config
+    source_relative: CONFIGs/242_T/run.config.json
+    source_sha256: 6e89bcb174bcb07a8facb9046b3f60fdb8e7d9d9c4b154ac0bcc308c0fc2f53f
+    fixture_sha256: 25fe7ed347eaf8a9fc8ba4b1303648fb7dc17297d29319b3083885b3f2961442
+    sanitization: |
+      The vendored file has been sanitized once and committed as the
+      schema-valid current-core snapshot; the runner passes it
+      directly, without modifying configuration keys at runtime.
+
+      Sanitization applied at fixture creation:
+
+      - Metadata keys removed: `_comment`, `_version`, `_metadata`,
+        `output_dir` (not schema fields).
+      - Retired sections removed: `hull`, `hull_adaptive` — the
+        alpha / mask polygonization pipeline they parameterised was
+        replaced by TileScope's
+        `bounded_spot_support_owned_acquisition` geometry contract;
+        the loader raises `ConfigMigrationError` if these survive
+        into a run.
+
+      Every other key is preserved verbatim from the source snapshot.
+
+invariants:
+  # Structural properties the runner asserts. Anything here should be
+  # verifiable directly from the fixture content, not from TileScope
+  # outputs.
+  same_support_across_pairs: |
+    Both CSVs share the same (x, y, roi_id) support; only gene1 /
+    gene2 differ. Verified by ledger row count equality per pair and
+    identical per-ROI n across the two pairs (see per_roi_n above).
+  multi_component_expected: |
+    At least one parent ROI is expected to split into more than one
+    analysis component under the standard configuration. The E2E test
+    asserts this from the emitted spot_ledger.csv.
+
+acceptance_runs:
+  # Provisional log of E2E acceptance runs against this fixture. Each
+  # entry records the TileScope core SHA the run was executed against
+  # and the observed test count. Historical entries are informational
+  # only — the durable contract is the test file itself.
+  - tilescope_sha: a932137
+    tilescope_head_message: "CORE-OUT-01 commit #2: ROI consensus surfaces (effect-only) + effect-only unit-enrichment primitive"
+    utc: 2026-08-21T10:07Z
+    n_tests: 34
+    n_passed: 34
+    notes: |
+      First green run after commit #2 (ROI consensus surfaces landed).
+      Ran with the schema-valid vendored config (no runtime shim).
+      Enrichment coverage: native sufficient counts recomputed from
+      fixture spots; consensus ensemble sufficient stats
+      (n_spots / sum_g1 / sum_g2) pooled from consensus_hexes.csv;
+      tessellation-summary reduction verified against replicate
+      medians / Q25 / Q75. Two-status coupling asserted on all
+      enrichment surfaces. Consensus Pearson verified on both
+      ensemble AND direct surfaces. Exact Cartesian key set asserted
+      on both ROI x replicate frames.

@@ -1,0 +1,10 @@
+# Direct dependencies in the environment used for the storage regression.
+# Python 3.11. This is not a complete transitive lock or a TileScope core pin.
+numpy==2.4.6
+pandas==2.3.3
+scipy==1.17.1
+PyYAML==6.0.3
+matplotlib==3.11.0
+scikit-learn==1.9.0
+Pillow==12.3.0
+pytest==8.4.2

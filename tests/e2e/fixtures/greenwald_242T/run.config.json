@@ -1,0 +1,26 @@
+{
+  "technology": "visium",
+  "tessellation": {
+    "n": 3,
+    "target_observations_per_tile": 5,
+    "min_observations_per_tile": 3,
+    "min_component_observations": 15
+  },
+  "consensus": {
+    "min_spots_per_hex": 4,
+    "min_tess_coverage_fraction": 0.6666666666666666,
+    "bivariate_morans": {
+      "visualize": true
+    }
+  },
+  "roi_filters": {
+    "min_roi_spots": 40,
+    "min_context_spots": 40
+  },
+  "permutations": 99,
+  "seed": 42,
+  "verbose": false,
+  "visualization": {
+    "show_stability": false
+  }
+}

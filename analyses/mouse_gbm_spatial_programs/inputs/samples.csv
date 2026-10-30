@@ -1,0 +1,4 @@
+sample_dir,sample_id,q_val,ncount_filter,bayesspace_column,assay,rds_relpath,highlighted_core_bayesspace,highlighted_peri_bayesspace,upstream_consult_commit
+MCT1_CTL,C1_836,9,500,BayesSpace,Spatial,MCT1_CTL/RDSs/seuratObject_denoised_clustered_C1_836_q9_500.RDS,2,5,99f8130
+MCT1_KO,D1_827,9,500,BayesSpace,Spatial,MCT1_KO/RDSs/seuratObject_denoised_clustered_D1_827_q9_500.RDS,4,9,99f8130
+V4_WT,V4_WT_unresected,10,500,BayesSpace,Spatial,V4_WT/RDSs/seuratObject_denoised_clustered_V4_WT_unresected_q10_500.RDS,,,99f8130

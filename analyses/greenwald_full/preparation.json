@@ -1,0 +1,24 @@
+{
+  "assay": "Spatial",
+  "layer": "data",
+  "roi_column": "BayesSpace",
+  "nbin": 24,
+  "ctrl": 50,
+  "seed": 1,
+  "programs": {
+    "Neuron": ["SNAP25", "SYT1", "SLC17A7"],
+    "Vasc": ["VWF", "PDGFRB", "ESAM"],
+    "MES-Hyp": ["VEGFA", "NDRG1", "PGK1"],
+    "Mac": ["CD14", "CD74", "FCGR3A"],
+    "AC": ["S100B", "AQP1", "TTYH1"],
+    "OPC": ["SOX10", "BCAN", "BCAS1"],
+    "Oligo": ["PLP1", "MAG", "CLDND1"],
+    "Chromatin-Reg": ["ATRX", "NFIX", "CCNI", "KMT2E", "SOX4"],
+    "MES": ["EFEMP1", "CHI3L1", "CD44"],
+    "Prolif-Metab": ["CNTD1", "SLC16A1", "CTNNB1", "SOX9"],
+    "MES-Ast": ["GAP43", "KCNF1", "HOPX", "FABP7"],
+    "Reactive-Ast": ["AQP4", "GJA1", "GSN", "HLA-DRA"],
+    "NPC": ["INA", "NELL2", "DCX", "STMN2"],
+    "Inflammatory-Mac": ["CCL2", "IL1B", "CCL3", "STAT1"]
+  }
+}

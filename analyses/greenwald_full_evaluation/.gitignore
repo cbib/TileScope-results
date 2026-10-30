@@ -1,0 +1,5 @@
+# Generated evidence belongs in TileScope-data/heiland_tyrosh/analysis.
+# Prevent accidental recreation in a source-code release.
+/scenario_cohort/
+/two_level_evidence/
+/local_frequencies/
